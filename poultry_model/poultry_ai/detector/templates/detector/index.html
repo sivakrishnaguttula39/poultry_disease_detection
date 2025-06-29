@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Poultry Disease Detector</title>
+  <style>
+    body {
+      background: #f7fafc;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-image: url('https://media.istockphoto.com/id/1674683797/photo/chicken-eats-feed-and-grain-at-eco-chicken-farm-free-range-chicken-farm.jpg?s=612x612&w=0&k=20&c=th8yzubwugXltTZei1QGrB1iKn7jkGGJd7bJWNFrTIQ=');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+    h2 {
+      color: #2d3748;
+      margin-bottom: 24px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      background: rgba(255,255,255,0.85);
+      padding: 12px 28px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: inline-block;
+    }
+    form {
+      background: #fff;
+      padding: 32px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    input[type="file"] {
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 8px;
+      background: #f1f5f9;
+      font-size: 1rem;
+      color: #2d3748;
+      width: 100%;
+    }
+    button[type="submit"] {
+      background: linear-gradient(90deg, #38b2ac 0%, #4299e1 100%);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(66,153,225,0.08);
+    }
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg, #4299e1 0%, #38b2ac 100%);
+      transform: translateY(-2px) scale(1.03);
+    }
+    h3 {
+      margin-top: 32px;
+      color: #3182ce;
+      font-size: 1.3rem;
+      background: #e6f7ff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(56,178,172,0.07);
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h2>Upload Chicken Dropping Image</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit">Predict</button>
+  </form>
+  {% if prediction %}
+    <h3>Prediction: {{ prediction }}</h3>
+  {% endif %}
+  <p style="max-width: 480px; color: #4a5568; font-size: 1.08rem; background: #edf2f7; padding: 14px 22px; border-radius: 8px; margin: 40px auto 18px auto; box-shadow: 0 1px 4px rgba(0,0,0,0.04); text-align: center;">
+    To detect poultry diseases, simply take a clear photo of a chicken dropping and upload it using the form above. Our AI model will analyze the image and predict the likely disease or indicate if it appears healthy. For best results, ensure the image is well-lit and focused.
+  </p>
+</body>
+</html>
